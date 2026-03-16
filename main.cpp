@@ -74,6 +74,44 @@ void runAlgorithm(string algorithm, int a[], int n, long long &comp)
     else if (algorithm == "radix-sort")
         radixSort(a, n, comp);
 }
+void runAlgorithm(string algorithm, int a[], int n)
+{
+    if (algorithm == "shaker-sort")
+        shakerSort(a, n);
+
+    else if (algorithm == "binary-insertion-sort")
+        binaryInsertionSort(a, n);
+
+    else if (algorithm == "flash-sort")
+        flashSort(a, n);
+
+    else if (algorithm == "selection-sort")
+        selectionSort(a, n);
+
+    else if (algorithm == "shell-sort")
+        shellSort(a, n);
+
+    else if (algorithm == "quick-sort")
+        quickSort(a, 0, n - 1);
+
+    else if (algorithm == "bubble-sort")
+        bubbleSort(a, n);
+
+    else if (algorithm == "insertion-sort")
+        insertionSort(a, n);
+
+    else if (algorithm == "counting-sort")
+        countingSort(a, n);
+
+    else if (algorithm == "merge-sort")
+        mergeSort(a, 0, n - 1);
+
+    else if (algorithm == "heap-sort")
+        heapSort(a, n);
+
+    else if (algorithm == "radix-sort")
+        radixSort(a, n);
+}
 
 bool isNumber(string s)
 {
@@ -125,35 +163,51 @@ int main(int argc, char *argv[])
                     comp = 0;
 
                     GenerateData(a, n, i);
+                    string filename = "input_" + to_string(i + 1) + ".txt";
+                    writeFile(filename, a, n);
 
-                    start = clock();
-                    runAlgorithm(algorithm, a, n, comp);
-                    end = clock();
-
-                    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
                     string inputOrder;
                     if (i == 0)
                         inputOrder = "Randomize";
                     if (i == 1)
-                        inputOrder = "Nearly Sorted";
-                    if (i == 2)
                         inputOrder = "Sorted";
-                    if (i == 3)
+                    if (i == 2)
                         inputOrder = "Reversed";
+                    if (i == 3)
+                        inputOrder = "Nearly Sorted";
                     cout << "Input order: " << inputOrder << endl;
                     cout << "-------------------------------" << endl;
                     if (option == "-time")
+                    {
+                        start = clock();
+                        runAlgorithm(algorithm, a, n);
+                        end = clock();
+
+                        time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
                         cout << "Running time: " << time << " ms\n";
+                    }
                     else if (option == "-comp")
+                    {
+                        runAlgorithm(algorithm, a, n, comp);
                         cout << "Comparisons: " << comp << endl;
+                    }
                     else
                     {
+                        int b[MAXN];
+                        for (int j = 0; j < n; j++)
+                            b[j] = a[j];
+                        start = clock();
+                        runAlgorithm(algorithm, a, n);
+                        end = clock();
+
+                        time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
+
+                        runAlgorithm(algorithm, b, n, comp);
+
                         cout << "Running time: " << time << " ms\n";
                         cout << "Comparisons: " << comp << endl;
                     }
                     cout << endl;
-                    string filename = "input_" + to_string(i + 1) + ".txt";
-                    writeFile(filename, a, n);
                 }
             }
 
@@ -164,18 +218,35 @@ int main(int argc, char *argv[])
                 readFile(param, a, n);
                 cout << "Input size: " << n << endl;
                 cout << "--------------------------------------" << endl;
-                start = clock();
-                runAlgorithm(algorithm, a, n, comp);
-                end = clock();
-
-                time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
                 if (option == "-time")
+                {
+                    start = clock();
+                    runAlgorithm(algorithm, a, n);
+                    end = clock();
+
+                    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
                     cout << "Running time: " << time << " ms\n";
+                }
                 else if (option == "-comp")
+                {
+                    comp = 0;
+                    runAlgorithm(algorithm, a, n, comp);
                     cout << "Comparisons: " << comp << endl;
+                }
                 else
                 {
+                    int b[MAXN];
+                    for (int j = 0; j < n; j++)
+                        b[j] = a[j];
+                    start = clock();
+                    runAlgorithm(algorithm, a, n);
+                    end = clock();
+
+                    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
+                    comp = 0;
+                    runAlgorithm(algorithm, b, n, comp);
+
                     cout << "Running time: " << time << " ms\n";
                     cout << "Comparisons: " << comp << endl;
                 }
@@ -197,40 +268,55 @@ int main(int argc, char *argv[])
             if (order == "-rand")
             {
                 dataType = 0;
-                cout << "Input order: GenerateRandomData" << endl;
+                cout << "Input order: Randomize" << endl;
             }
             else if (order == "-sorted")
             {
                 dataType = 1;
-                cout << "Input order: GenerateSortedData" << endl;
+                cout << "Input order: Sorted" << endl;
             }
             else if (order == "-rev")
             {
                 dataType = 2;
-                cout << "Input order: GenerateReverseData" << endl;
+                cout << "Input order: Reversed" << endl;
             }
             else if (order == "-nsorted")
             {
                 dataType = 3;
-                cout << "Input order: GenerateNearlySortedData" << endl;
+                cout << "Input order:Nearly Sorted" << endl;
             }
             cout << "-------------------------" << endl;
             GenerateData(a, n, dataType);
 
             writeFile("input.txt", a, n);
 
-            start = clock();
-            runAlgorithm(algorithm, a, n, comp);
-            end = clock();
-
-            time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
-
             if (option == "-time")
+            {
+                start = clock();
+                runAlgorithm(algorithm, a, n);
+                end = clock();
+                time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
                 cout << "Running time: " << time << " ms\n";
+            }
             else if (option == "-comp")
+            {
+                comp = 0;
+                runAlgorithm(algorithm, a, n, comp);
                 cout << "Comparisons: " << comp << endl;
+            }
             else
             {
+                int b[MAXN];
+                for (int j = 0; j < n; j++)
+                    b[j] = a[j];
+                start = clock();
+                runAlgorithm(algorithm, a, n);
+                end = clock();
+
+                time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
+                comp = 0;
+                runAlgorithm(algorithm, b, n, comp);
+
                 cout << "Running time: " << time << " ms\n";
                 cout << "Comparisons: " << comp << endl;
             }
@@ -257,17 +343,29 @@ int main(int argc, char *argv[])
             for (int i = 0; i < n; i++)
                 b[i] = a[i];
 
+            int c[MAXN];
+            int d[MAXN];
+
+            for (int i = 0; i < n; i++)
+            {
+                c[i] = a[i];
+                d[i] = b[i];
+            }
             start = clock();
-            runAlgorithm(alg1, a, n, comp);
+            runAlgorithm(alg1, a, n);
             end = clock();
             time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
             start = clock();
-            runAlgorithm(alg2, b, n, comp2);
+            runAlgorithm(alg2, b, n);
             end = clock();
             time2 = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
             cout << "Running time: " << alg1 << ": " << time << " ms | " << alg2 << ": " << time2 << " ms\n";
+            comp = 0;
+            runAlgorithm(alg1, c, n, comp);
+            comp2 = 0;
+            runAlgorithm(alg2, d, n, comp2);
             cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
         }
 
@@ -282,44 +380,53 @@ int main(int argc, char *argv[])
             if (order == "-rand")
             {
                 dataType = 0;
-                cout << "Input order: GenerateRandomData" << endl;
+                cout << "Input order: Randomize" << endl;
             }
             else if (order == "-sorted")
             {
                 dataType = 1;
-                cout << "Input order: GenerateSortedData" << endl;
+                cout << "Input order: Sorted" << endl;
             }
             else if (order == "-rev")
             {
                 dataType = 2;
-                cout << "Input order: GenerateReverseData" << endl;
+                cout << "Input order: Reversed" << endl;
             }
             else if (order == "-nsorted")
             {
                 dataType = 3;
-                cout << "Input order: GenerateNearlySortedData" << endl;
+                cout << "Input order:Nearly Sorted" << endl;
             }
             cout << "-------------------------" << endl;
 
             GenerateData(a, n, dataType);
-
+            writeFile("input.txt", a, n);
             for (int i = 0; i < n; i++)
                 b[i] = a[i];
+            int c[MAXN];
+            int d[MAXN];
 
+            for (int i = 0; i < n; i++)
+            {
+                c[i] = a[i];
+                d[i] = b[i];
+            }
             start = clock();
-            runAlgorithm(alg1, a, n, comp);
+            runAlgorithm(alg1, a, n);
             end = clock();
             time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
             start = clock();
-            runAlgorithm(alg2, b, n, comp2);
+            runAlgorithm(alg2, b, n);
             end = clock();
             time2 = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
             cout << "Running time: " << alg1 << ": " << time << " ms | " << alg2 << ": " << time2 << " ms\n";
+            comp = 0;
+            runAlgorithm(alg1, c, n, comp);
+            comp2 = 0;
+            runAlgorithm(alg2, d, n, comp2);
             cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
-
-            writeFile("input.txt", a, n);
         }
     }
 
