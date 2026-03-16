@@ -78,7 +78,8 @@ void runAlgorithm(string algorithm, int a[], int n, long long &comp)
 bool isNumber(string s)
 {
     for (char c : s)
-        if (!isdigit(c)) return false;
+        if (!isdigit(c))
+            return false;
     return true;
 }
 int main(int argc, char *argv[])
@@ -105,6 +106,8 @@ int main(int argc, char *argv[])
     {
         string algorithm = argv[2];
         string param = argv[3];
+        cout << "ALGORTHM MODE" << endl;
+        cout << "Algorithm: " << argv[2] << endl;
 
         // Command 1 hoặc Command 3
         if (argc == 5)
@@ -115,7 +118,8 @@ int main(int argc, char *argv[])
             if (isNumber(param))
             {
                 n = stoi(param);
-
+                cout << "Input size: " << n << endl;
+                cout << endl;
                 for (int i = 0; i < 4; i++)
                 {
                     comp = 0;
@@ -127,9 +131,17 @@ int main(int argc, char *argv[])
                     end = clock();
 
                     time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
-
-                    cout << "Data type " << i + 1 << endl;
-
+                    string inputOrder;
+                    if (i == 0)
+                        inputOrder = "Randomize";
+                    if (i == 1)
+                        inputOrder = "Nearly Sorted";
+                    if (i == 2)
+                        inputOrder = "Sorted";
+                    if (i == 3)
+                        inputOrder = "Reversed";
+                    cout << "Input order: " << inputOrder << endl;
+                    cout << "-------------------------------" << endl;
                     if (option == "-time")
                         cout << "Running time: " << time << " ms\n";
                     else if (option == "-comp")
@@ -139,7 +151,7 @@ int main(int argc, char *argv[])
                         cout << "Running time: " << time << " ms\n";
                         cout << "Comparisons: " << comp << endl;
                     }
-
+                    cout << endl;
                     string filename = "input_" + to_string(i + 1) + ".txt";
                     writeFile(filename, a, n);
                 }
@@ -148,8 +160,10 @@ int main(int argc, char *argv[])
             // COMMAND 1: input file
             else
             {
+                cout << "Input file: " << param << endl;
                 readFile(param, a, n);
-
+                cout << "Input size: " << n << endl;
+                cout << "--------------------------------------" << endl;
                 start = clock();
                 runAlgorithm(algorithm, a, n, comp);
                 end = clock();
@@ -176,14 +190,31 @@ int main(int argc, char *argv[])
             n = stoi(argv[3]);
             string order = argv[4];
             string option = argv[5];
+            cout << "Input size: " << n << endl;
 
             int dataType;
 
-            if (order == "-rand") dataType = 0;
-            else if (order == "-sorted") dataType = 1;
-            else if (order == "-rev") dataType = 2;
-            else if (order == "-nsorted") dataType = 3;
-
+            if (order == "-rand")
+            {
+                dataType = 0;
+                cout << "Input order: GenerateRandomData" << endl;
+            }
+            else if (order == "-sorted")
+            {
+                dataType = 1;
+                cout << "Input order: GenerateSortedData" << endl;
+            }
+            else if (order == "-rev")
+            {
+                dataType = 2;
+                cout << "Input order: GenerateReverseData" << endl;
+            }
+            else if (order == "-nsorted")
+            {
+                dataType = 3;
+                cout << "Input order: GenerateNearlySortedData" << endl;
+            }
+            cout << "-------------------------" << endl;
             GenerateData(a, n, dataType);
 
             writeFile("input.txt", a, n);
@@ -212,14 +243,17 @@ int main(int argc, char *argv[])
     {
         string alg1 = argv[2];
         string alg2 = argv[3];
-
+        cout << "COMPARE MODE" << endl;
+        cout << "Algorithm: " << argv[2] << "|" << argv[3] << endl;
         // Command 4
         if (argc == 5)
         {
             string inputfile = argv[4];
 
             readFile(inputfile, a, n);
-
+            cout << "Input file: " << inputfile << endl;
+            cout << "Input size: " << n << endl;
+            cout << "------------------------------" << endl;
             for (int i = 0; i < n; i++)
                 b[i] = a[i];
 
@@ -233,11 +267,8 @@ int main(int argc, char *argv[])
             end = clock();
             time2 = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
-            cout << "Algorithm 1 time: " << time << " ms\n";
-            cout << "Algorithm 2 time: " << time2 << " ms\n";
-
-            cout << "Algorithm 1 comparisons: " << comp << endl;
-            cout << "Algorithm 2 comparisons: " << comp2 << endl;
+            cout << "Running time: " << alg1 << ": " << time << " ms | " << alg2 << ": " << time2 << " ms\n";
+            cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
         }
 
         // Command 5
@@ -245,13 +276,30 @@ int main(int argc, char *argv[])
         {
             n = stoi(argv[4]);
             string order = argv[5];
-
+            cout << "Input size: " << n << endl;
             int dataType;
 
-            if (order == "-rand") dataType = 0;
-            else if (order == "-sorted") dataType = 1;
-            else if (order == "-rev") dataType = 2;
-            else if (order == "-nsorted") dataType = 3;
+            if (order == "-rand")
+            {
+                dataType = 0;
+                cout << "Input order: GenerateRandomData" << endl;
+            }
+            else if (order == "-sorted")
+            {
+                dataType = 1;
+                cout << "Input order: GenerateSortedData" << endl;
+            }
+            else if (order == "-rev")
+            {
+                dataType = 2;
+                cout << "Input order: GenerateReverseData" << endl;
+            }
+            else if (order == "-nsorted")
+            {
+                dataType = 3;
+                cout << "Input order: GenerateNearlySortedData" << endl;
+            }
+            cout << "-------------------------" << endl;
 
             GenerateData(a, n, dataType);
 
@@ -268,11 +316,8 @@ int main(int argc, char *argv[])
             end = clock();
             time2 = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
-            cout << "Algorithm 1 time: " << time << " ms\n";
-            cout << "Algorithm 2 time: " << time2 << " ms\n";
-
-            cout << "Algorithm 1 comparisons: " << comp << endl;
-            cout << "Algorithm 2 comparisons: " << comp2 << endl;
+            cout << "Running time: " << alg1 << ": " << time << " ms | " << alg2 << ": " << time2 << " ms\n";
+            cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
 
             writeFile("input.txt", a, n);
         }
