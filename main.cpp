@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 
                     string inputOrder;
                     if (i == 0)
-                        inputOrder = "Randomize";
+                        inputOrder = "Randomized";
                     if (i == 1)
                         inputOrder = "Sorted";
                     if (i == 2)
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
             if (order == "-rand")
             {
                 dataType = 0;
-                cout << "Input order: Randomize" << endl;
+                cout << "Input order: Randomized" << endl;
             }
             else if (order == "-sorted")
             {
@@ -286,7 +286,7 @@ int main(int argc, char *argv[])
             else if (order == "-nsorted")
             {
                 dataType = 3;
-                cout << "Input order:Nearly Sorted" << endl;
+                cout << "Input order: Nearly Sorted" << endl;
             }
             cout << "-------------------------" << endl;
             GenerateData(a, n, dataType);
@@ -386,7 +386,7 @@ int main(int argc, char *argv[])
             if (order == "-rand")
             {
                 dataType = 0;
-                cout << "Input order: Randomize" << endl;
+                cout << "Input order: Randomized" << endl;
             }
             else if (order == "-sorted")
             {
@@ -401,7 +401,7 @@ int main(int argc, char *argv[])
             else if (order == "-nsorted")
             {
                 dataType = 3;
-                cout << "Input order:Nearly Sorted" << endl;
+                cout << "Input order: Nearly Sorted" << endl;
             }
             cout << "-------------------------" << endl;
 
