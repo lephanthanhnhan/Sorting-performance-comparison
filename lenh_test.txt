@@ -1,4 +1,5 @@
 TẠO EXE: g++ main.cpp sort.cpp DataGenerator.cpp -o sort.exe
+or  
 g++ *.cpp -o sort.exe
 COMMAND1: 
 
