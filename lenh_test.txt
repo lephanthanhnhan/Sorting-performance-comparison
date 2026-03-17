@@ -1,4 +1,5 @@
 TẠO EXE: g++ main.cpp sort.cpp DataGenerator.cpp -o sort.exe
+g++ *.cpp -o sort.exe
 COMMAND1: 
 
 ./sort.exe -a shaker-sort input.txt -both
@@ -16,23 +17,23 @@ COMMAND1:
 
 COMMAND 2:
 
-sort.exe -a quick-sort 10000 -rand -both
-sort.exe -a merge-sort 10000 -sorted -both
-sort.exe -a heap-sort 10000 -rev -both
-sort.exe -a shell-sort 10000 -nsorted -both
+./sort.exe -a quick-sort 10000 -rand -both
+./sort.exe -a merge-sort 10000 -sorted -both
+./sort.exe -a heap-sort 10000 -rev -both
+./sort.exe -a shell-sort 10000 -nsorted -both
 
 COMMAND 3:
 
-sort.exe -a quick-sort 10000 -both
-sort.exe -a merge-sort 10000 -both
+./sort.exe -a quick-sort 10000 -both
+./sort.exe -a merge-sort 10000 -both
 
 COMMAND 4: 
-sort.exe -c quick-sort merge-sort input.txt
-sort.exe -c heap-sort quick-sort input.txt
-sort.exe -c bubble-sort insertion-sort input.txt
+./sort.exe -c quick-sort merge-sort input.txt
+./sort.exe -c heap-sort quick-sort input.txt
+./sort.exe -c bubble-sort insertion-sort input.txt
 
 COMMAND 5:
 
-sort.exe -c quick-sort merge-sort 10000 -rand
-sort.exe -c heap-sort shell-sort 10000 -sorted
-sort.exe -c bubble-sort insertion-sort 10000 -rev
+./sort.exe -c quick-sort merge-sort 10000 -rand
+./sort.exe -c heap-sort shell-sort 10000 -sorted
+./sort.exe -c bubble-sort insertion-sort 10000 -rev

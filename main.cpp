@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        int b[MAXN];
+                        int *b = new int[n];
                         for (int j = 0; j < n; j++)
                             b[j] = a[j];
                         start = clock();
@@ -202,10 +202,12 @@ int main(int argc, char *argv[])
 
                         time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
+                        comp = 0;
                         runAlgorithm(algorithm, b, n, comp);
 
                         cout << "Running time: " << time << " ms\n";
                         cout << "Comparisons: " << comp << endl;
+                        delete[] b;
                     }
                     cout << endl;
                 }
@@ -236,7 +238,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    int b[MAXN];
+                    int *b = new int[n];
                     for (int j = 0; j < n; j++)
                         b[j] = a[j];
                     start = clock();
@@ -249,6 +251,7 @@ int main(int argc, char *argv[])
 
                     cout << "Running time: " << time << " ms\n";
                     cout << "Comparisons: " << comp << endl;
+                    delete[] b;
                 }
 
                 writeFile("output.txt", a, n);
@@ -306,7 +309,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                int b[MAXN];
+                int *b = new int[n];
                 for (int j = 0; j < n; j++)
                     b[j] = a[j];
                 start = clock();
@@ -319,6 +322,7 @@ int main(int argc, char *argv[])
 
                 cout << "Running time: " << time << " ms\n";
                 cout << "Comparisons: " << comp << endl;
+                delete[] b;
             }
 
             writeFile("output.txt", a, n);
@@ -343,8 +347,8 @@ int main(int argc, char *argv[])
             for (int i = 0; i < n; i++)
                 b[i] = a[i];
 
-            int c[MAXN];
-            int d[MAXN];
+            int *c = new int[n];
+            int *d = new int[n];
 
             for (int i = 0; i < n; i++)
             {
@@ -367,6 +371,8 @@ int main(int argc, char *argv[])
             comp2 = 0;
             runAlgorithm(alg2, d, n, comp2);
             cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
+            delete[] c;
+            delete[] d;
         }
 
         // Command 5
@@ -403,8 +409,8 @@ int main(int argc, char *argv[])
             writeFile("input.txt", a, n);
             for (int i = 0; i < n; i++)
                 b[i] = a[i];
-            int c[MAXN];
-            int d[MAXN];
+            int *c = new int[n];
+            int *d = new int[n];
 
             for (int i = 0; i < n; i++)
             {
@@ -427,6 +433,8 @@ int main(int argc, char *argv[])
             comp2 = 0;
             runAlgorithm(alg2, d, n, comp2);
             cout << "Comparisons: " << alg1 << ": " << comp << "| " << alg2 << ": " << comp2 << "\n";
+            delete[] c;
+            delete[] d;
         }
     }
 
