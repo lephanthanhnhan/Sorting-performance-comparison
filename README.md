@@ -9,7 +9,12 @@ SORTING ALGORITHMS PROJECT – README
 
 The project uses only standard C++ libraries that are part of the GNU Standard Library.
 
-<iostream> – Console input/output. <fstream> – Reading and writing files. <string> – String manipulation. <ctime> – Measuring running time of algorithms. <cstdlib> – Utility functions (exit, random functions, stoi). <cctype> – Character checking (isdigit).
+<iostream> – Console input/output.
+<fstream> – Reading and writing files.
+<string> – String manipulation.
+<ctime> – Measuring running time of algorithms.
+<cstdlib> – Utility functions (exit, random functions, stoi).
+<cctype> – Character checking (isdigit).
 
 No external or non-standard libraries such as windows.h, conio.h, bits/stdc++.h, etc. are used.
 
@@ -45,7 +50,7 @@ g++ main.cpp sort.cpp DataGenerator.cpp -o sort.exe
 
 or
 
-g++ *.cpp -o sort.exe
+g++ \*.cpp -o sort.exe
 
 ---
 

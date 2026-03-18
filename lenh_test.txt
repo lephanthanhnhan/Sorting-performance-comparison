@@ -2,21 +2,26 @@ TẠO EXE: g++ main.cpp sort.cpp DataGenerator.cpp -o sort.exe
 or  
 g++ *.cpp -o sort.exe
 COMMAND1: 
-
-./sort.exe -a shaker-sort input.txt -both
-./sort.exe -a binary-insertion-sort input.txt -both
-./sort.exe -a flash-sort input.txt -both
 ./sort.exe -a selection-sort input.txt -both
-./sort.exe -a shell-sort input.txt -both
-./sort.exe -a quick-sort input.txt -both
-./sort.exe -a bubble-sort input.txt -both
 ./sort.exe -a insertion-sort input.txt -both
-./sort.exe -a counting-sort input.txt -both
-./sort.exe -a merge-sort input.txt -both
+./sort.exe -a shell-sort input.txt -both
+./sort.exe -a bubble-sort input.txt -both
 ./sort.exe -a heap-sort input.txt -both
+./sort.exe -a merge-sort input.txt -both
+./sort.exe -a quick-sort input.txt -both
 ./sort.exe -a radix-sort input.txt -both
+./sort.exe -a counting-sort input.txt -both
+./sort.exe -a binary-insertion-sort input.txt -both
+./sort.exe -a shaker-sort input.txt -both
+./sort.exe -a flash-sort input.txt -both
 
 COMMAND 2:
+./sort.exe -a selection-sort 10000 -sorted -both
+./sort.exe -a selection-sort 30000 -sorted -both
+./sort.exe -a selection-sort 50000 -sorted -both
+./sort.exe -a selection-sort 100000 -sorted -both
+./sort.exe -a selection-sort 300000 -sorted -both
+./sort.exe -a selection-sort 500000 -sorted -both
 
 ./sort.exe -a quick-sort 10000 -rand -both
 ./sort.exe -a merge-sort 10000 -sorted -both
